@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="background-color: black">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <title>Admin: Log in</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'Portalapp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'Portalapp/css/simple-sidebar.css' %}" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style>
+body {
+background-color:black;
+}
+input,textarea,select {
+    width: 100%;
+	padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+	border-radius: 8px;
+}
+label {
+font-size: 150%;
+color: #dee5ef;
+}
+input:focus {
+    background-color: lightblue;
+}
+#one:hover {
+background-color: lightblue;
+}
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+
+
+
+
+</style>
+
+</head>
+<body ><br><br>
+<div class="container-fluid"  style="background-color:#383a3d">
+                    <div class="col-lg-12">
+					<h5 id="headingtext" style="text-align:center;background-color:rgb(69, 33, 126)" ><strong>Login Admin</strong></h5><br><hr>
+                    <div class="col-lg-4"><br><br><br><br>
+                    <div style="background-color:#383a3d;color:red;font-size:140%">
+                      
+                      <b>{{ form.non_field_errors }}{{ form.usergroup.errors }}{{ form.user_name.errors }}{{ form.password.errors}}{{error}}</b></div>
+                    </div>
+                    <div class="col-lg-6">
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <table id="tablecss">
+                            <tr>
+                                <th><label for="id_usergroup">Acount Type:   </label></th>
+                                <td>
+                                    
+                                    <select name="usergroup">
+                                        <option value="Admin">Administrator</option>
+                                        <option value="User">User</option>
+                                        </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="id_user_name">User Name:   </label></th>
+                                <td>
+                                    
+                                    <input type="text" name="user_name" required maxlength="100" id="id_user_name" autocomplete="off"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="id_password">Password:   </label></th>
+                                <td>
+                                    
+                                    <input type="password" name="password" required maxlength="100" id="id_password" autocomplete="off" />
+                                </td>
+                            </tr>
+                         
+                  
+                            <tr>
+                                <td></td>
+                                <td><input type="submit" id="one" ></td>
+                            </tr>
+                        </table>
+                    </form><br><br>
+                        
+                        </div>
+                        
+                        <div class="col-lg-3"></div>
+						
+                        </div>
+						<center><a href="{% url 'Portalapp:index' %}" class="btn btn-secondary" id="menu-toggle">GO TO HOME</a>	</center>
+                        </div>
+						
+						</body>
+						</html>

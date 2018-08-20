@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+
+
+<html lang="en" style="background-color: black">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>NITK Complaint System</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'Portalapp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'Portalapp/css/simple-sidebar.css' %}" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav" id="listd">
+                <li class="sidebar-brand">
+                    <a href="{% url 'Portalapp:index' %}"id = "sidetitle">
+                        NITK Complaint System
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'Portalapp:index' %}">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'Portalapp:Admin' %}">Log In</a>
+                </li>
+                <li>
+                    <a href="{% url 'Portalapp:complaint' %}">Submit Complaint Form</a>
+                </li>
+                <li>
+                    <a href="{% url 'Portalapp:Admin' %}">Check Approved Complaints</a>
+                </li>
+                
+                   
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <center>
+                <div id="mainhead">
+                  <h1 id="headingtext"><strong>NITK Complaint System</strong></h1>
+                </div>
+                <center>
+                    <hr>
+                    <div id="details" >
+                        <h2 id="detailhead" >IRIS Backend Task</h2>
+                        <p id="detailp">Admins can log on and review complaints made by the student account.
+                           <br>
+                           Complaints are made in the form of forms submitted by users and is saved in the database. Admins can log in via the authentication system and review the complaints.
+                        <br>
+                        MVC architecture used: Django <br> Database: SQLite
+                        </p>
+                    
+                    <p id="detailp">Hover over the image below, and Leave a complaint to the IRIS admins!<br> You will hear back from them as soon as possible.</p>
+                
+                </div>
+                <hr>
+                        <div id="gi">
+                   <div id="appear"> <p id="gitext">MAKE YOUR VOICE HEARD</p><a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">LEAVE A COMPLAINT</a>
+                </div></div><br><hr>
+                <center><a href="{% url 'Portalapp:Admin' %}" class="btn btn-secondary" id="menu-toggle">Log In</a>	</center><br>
+                                <hr>
+                <div id="cred" ><p>Akash Nair  •  2018  •  IRIS<p></div>
+            </center>
+                </center>
+            </div>
+        </div>
+        <div>
+
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'Portalapp/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'Portalapp/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,238 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="background-color: black">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{{usergroup}} Admin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'Portalapp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'Portalapp/css/simple-sidebar.css' %}" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<style>
+p {
+color:white;
+font-size:20px;
+
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+	border: 1px solid #ddd;
+	color: white;
+	font-family: 'detail';
+	font-size: 150%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+
+
+</style>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<body >
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav" id="listd">
+                <li class="sidebar-brand">
+                    <a href="{% url 'Portalapp:index' %}"id = "sidetitle">
+                        NITK Complaint System
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'Portalapp:index' %}">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'Portalapp:Admin' %}">Log In</a>
+                </li>
+                <li>
+                    <a href="{% url 'Portalapp:complaint' %}">Submit Complaint Form</a>
+                </li>
+                <li>
+                    <a href="{% url 'Portalapp:Admin' %}">Check Approved Complaints</a>
+                </li>
+                
+                   
+            </ul>
+        </div>
+		<div id="page-content-wrapper" >
+            <div class="container-fluid">
+			<!-- club information will go here -->
+			<div id="mainhead">
+            <center><h1 id="headingtextclub">Welcome Admin</h1></center>
+		<br>
+		</div>
+                <hr><br>
+				<h3 id="fontad" style="color:rgb(209, 26, 26)">New Join Requests:</h3>
+			<hr>
+				<div class="container-fluid"  style="background-color:#383a3d" id="fontad" style="overflow-x:auto;">   
+			<div class="col-lg-12"><div class="col-lg-1"></div>
+			
+                    <div class="col-lg-1"><h4 style="color:rgb(255, 255, 255);"><b><u>Name</u></b></h4>
+					{% for names in name %}
+					<p>{{forloop.counter}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{names}}</p>{% endfor %}</div>
+					
+					<div class="col-lg-1"><h4 style="color:rgb(255, 255, 255)"><b><u>Branch</u></b></h4>
+					{% for branches in branch %}
+					<p>{{branches}}</p>{% endfor %}</div>
+					
+					<div class="col-lg-1"><h4 style="color:rgb(255, 255, 255)"><b><u>DOB</u></b></h4>
+					{% for dob in date %}
+					<p>{{dob}}</p>{% endfor %}</div>
+					
+					<div class="col-lg-1"><h4 style="color:rgb(255, 255, 255)"><b><u>Roll</u></b></h4>
+					{% for rolls in roll_number %}
+					<p>{{rolls}}</p>{% endfor %}</div>
+					
+					<div class="col-lg-2"><h4 style="color:rgb(255, 255, 255)"><b><u>Reason to join</u></b></h4>
+					{% for infos in info %}
+					<p>{{infos}}</p>{% endfor %}</div>
+					
+					<div class="col-lg-2"><h4 style="color:rgb(255, 255, 255)"><b><u>Email</u></b></h4>
+					{% for emails in email %}
+					<p>{{emails}}</p>{% endfor %}</div>
+					
+					<div class="col-lg-1"><h4 style="color:rgb(255, 255, 255)"><b><u>Phone</u></b></h4>
+					{% for phones in phone %}
+					<p>{{phones}}</p>{% endfor %}</div>
+					
+					<div class="col-lg-1"><h4 style="color:rgb(255, 255, 255)"><b><u>Approval</u></b></h4>
+					
+					<form action="" method="post">
+                        {% csrf_token %}
+					
+					<th>
+					{% if approval.0 is 0 %}
+                                <td>
+                                    <input type="checkbox" name="approval" value="{{roll_number.0}}" id="id_approval"  autocomplete="off" /></td>
+					{% endif %}	
+							</th><br><br>
+							<th>
+					{% if approval.1 is 0 %}
+					 
+                                
+                                <td><input type="checkbox" name="approval" value="{{roll_number.1}}" id="id_approval"  autocomplete="off" /></td>
+                                                    
+					{% endif %}	
+							
+							</th><br><br>
+							<th>
+					{% if approval.2 is 0 %}
+					 
+                                
+                                <td><input type="checkbox" name="approval" value="{{roll_number.2}}" id="id_approval"  autocomplete="off" /></td>
+                                
+                    
+					{% endif %}	
+							
+							</th><br><br>
+							<th>
+					{% if approval.3 is 0 %}
+					 
+                                
+                                <td><input type="checkbox" name="approval" value="{{roll_number.3}}" id="id_approval"  autocomplete="off" /></td>
+                                
+                    
+					{% endif %}	
+							
+							</th><br><br>
+							<th>
+                                <td></td>
+                                <td><input type="submit" class="btn btn-danger" value="Approve"></td>
+                            </th></form>
+							
+							</div>
+					
+					
+					
+					<div class="col-lg-3"></div></div></div>
+					
+		<hr><br>
+
+			<h3 id="fontad" style="color:rgb(209, 26, 26)">Approved Requests:</h3><hr>
+            <div id="fontad" class="container-fluid"  style="background-color:#383a3d">   
+			<div class="col-lg-12"><div class="col-lg-1"></div>
+			
+                    <div class="col-lg-1" id="fontad"><h4 style="color:rgb(255, 255, 255);"><b><u>Name</u></b></h4>
+					{% for names in name_n %}
+					<p>{{forloop.counter}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{names}}</p>{% endfor %}</div>
+					
+					<div class="col-lg-1"><h4 style="color:rgb(255, 255, 255)"><b><u>Branch</u></b></h4>
+					{% for branches in branch_n %}
+					<p>{{branches}}</p>{% endfor %}</div>
+					
+					<div class="col-lg-1"><h4 style="color:rgb(255, 255, 255)"><b><u>DOB</u></b></h4>
+					{% for dob in date_n %}
+					<p>{{dob}}</p>{% endfor %}</div>
+					
+					<div class="col-lg-1"><h4 style="color:rgb(255, 255, 255)"><b><u>Roll</u></b></h4>
+					{% for rolls in roll_number_n %}
+					<p>{{rolls}}</p>{% endfor %}</div>
+					
+					<div class="col-lg-2"><h4 style="color:rgb(255, 255, 255)"><b><u>Reason to join</u></b></h4>
+					{% for infos in info_n %}
+					<p>{{infos}}</p>{% endfor %}</div>
+					
+					<div class="col-lg-2"><h4 style="color:rgb(255, 255, 255)"><b><u>Email</u></b></h4>
+					{% for emails in email_n %}
+					<p>{{emails}}</p>{% endfor %}</div>
+					
+					<div class="col-lg-1"><h4 style="color:rgb(255, 255, 255)"><b><u>Phone</u></b></h4>
+					{% for phones in phone_n %}
+					<p>{{phones}}</p>{% endfor %}</div>
+					
+					<div class="col-lg-1"><h4 style="color:rgb(255, 255, 255)"><b><u>Approval</u></b></h4>
+					{% for phones in phone_n %}
+					<p><button type="button" class="btn btn-danger">Approved</button></p>{% endfor %}	
+							</div>
+					
+					
+					
+					<div class="col-lg-3"></div></div></div>			
+					
+					
+					
+					
+					
+
+			</div><br><br><br><br><br><br><br>
+			<br><hr><br>
+			<center><a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">MENU</a>	</center>
+			</div></div>
+			
+			
+			<!-- Bootstrap core JavaScript -->
+    <script src="{%static 'Portalapp/vendor/jquery/jquery.min.js' %}" ></script>
+    <script src="{% static 'Portalapp/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script></div>
+
+</body>
+
+</html>
