@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.template import loader
 
 from .models import form,users,form2
-from .forms import ApplicationForm,UserForm,form21,GuestForm
+from .forms import ApplicationForm,UserForm,form21
 
 
 
@@ -22,7 +22,7 @@ def complaint(request):
     else:
         f = ApplicationForm()
     
-    template = loader.get_template('Portalapp/sub/club.html')
+    template = loader.get_template('Portalapp/sub/complaint.html')
     context = {'form':f,}
     return HttpResponse(template.render(context, request))
 
@@ -81,13 +81,13 @@ def adminsite(request):
         for i in range(len(l)):
             a=form2(approval=l[i])
             a.save()
-        return redirect('Portalapp:approvalfunc')
+        return redirect('Portalapp:approval')
 
     context = {'name':names,'branch':branch,'roll_number':roll_number,'date':date,'info':info,'email':email,'phone':phone,'approval':approval,'name_n':names_n,'branch_n':branch_n,'roll_number_n':roll_number_n,'date_n':date_n,'info_n':info_n,'email_n':email_n,'phone_n':phone_n,}
     return HttpResponse(template.render(context, request))
 	
     
-def approvalfunc(request):
+def approval(request):
     roll_number=form2.objects.values_list('approval', flat=True)
     for i in roll_number:
         q=get_object_or_404(form, roll_number=i)

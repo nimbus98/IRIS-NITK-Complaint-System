@@ -1,0 +1,270 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="background-color: black">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Complaint Form</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'Portalapp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'Portalapp/css/simple-sidebar.css' %}" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style>
+input,textarea {
+    width: 100%;
+	padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+	border-radius: 8px;
+}
+label {
+font-size: 150%;
+color: #dee5ef;
+}
+input:focus {
+    background-color: lightblue;
+}
+#one:hover {
+background-color: lightblue;
+}
+
+.responsive {
+    width: 17vw;
+    max-width: 180px;
+    height: auto;
+}
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgb(218, 215, 215);
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 70%;
+    margin-top: 6px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+
+</style>
+
+</head>
+
+<body >
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav" id="listd">
+                <li class="sidebar-brand">
+                    <a href="{% url 'Portalapp:index' %}"id = "sidetitle">
+                        NITK Complaint System
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'Portalapp:index' %}">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'Portalapp:Admin' %}">Log In</a>
+                </li>
+                <li>
+                    <a href="{% url 'Portalapp:complaint' %}">Submit Complaint Form</a>
+                </li>
+                <li>
+                    <a href="{% url 'Portalapp:Admin' %}">Check Approved Complaints</a>
+                </li>
+                
+                   
+            </ul></div>
+		<div id="page-content-wrapper" >
+            <div class="container-fluid">
+			<!-- information will go here -->
+			
+            <h1 id="headingtextclub"> Complaint Form Page</h1>
+            <br><br>
+                <hr>
+                <p id="detailpclub" >Details to complaint blablabla make sure you have a valid complaint blablabla</p>
+                <center><a href="#headingtext" class="btn btn-secondary" id="clubapply"><strong>Complaint Now</strong></a>	</center>
+                <br>
+                <center><a href="{% url 'Portalapp:Admin' %}" class="btn btn-secondary" id="clubapply"><strong>Check for Reviewed Complaints</strong></a>	</center>
+
+
+            </div>
+			<hr>
+					<!-- FORM STARTS HERE -->
+		
+
+                    <h5 id="headingtext" style="text-align:center;background-color:rgb(69, 33, 126)" ><strong>Complaint Form</strong></h5>
+                    <div class="container-fluid"  style="background-color:#383a3d">
+                    <div class="col-lg-12">
+                    <div class="col-lg-3"><br><br><br><br>
+                    <div style="background-color:#383a3d;color:red;font-size:140%">
+                      
+                      <b>{{ form.non_field_errors }}{{ form.name.errors }}{{ form.roll_number.errors }}{{ form.email.errors }}{{ form.phone.errors }}{{ form.branch.errors }}{{ form.address.errors }}{{ form.date.errors }}{{ form.info.errors }}</b></div>
+                    </div>
+                    <div class="col-lg-6">
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <table id="tablecss">
+                            <tr>
+                                <th><label for="id_name">Name:</label></th>
+                                <td>
+                                    
+                                    <input type="text" name="name" required maxlength="100" id="id_name" autofocus autocomplete="off" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="id_roll_number">Roll Number:</label></th>
+                                <td>
+                                    
+                                    <input type="text" name="roll_number" required maxlength="100" id="id_roll_number" autocomplete="off"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="id_email">Email:</label></th>
+                                <td>
+                                    
+                                    <input type="email" name="email" required maxlength="100" id="id_email" autocomplete="off" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="id_phone">Phone Number:</label></th>
+                                <td>
+                                    
+                                    <input type="text" name="phone" required maxlength="100" id="id_phone" autocomplete="off" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="id_phone">Branch:</label></th>
+                                <td>
+                                    
+                                    <input type="text" name="branch" required maxlength="100" id="id_branch" autocomplete="off"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="id_address">Address:</label></th>
+                                <td>
+                                    
+                                    <input type="text" name="address" required maxlength="1000" id="id_address" autocomplete="off"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="id_phone">Date of Birth:</label></th>
+                                <td>
+                                    
+                                    <input type="date" name="date" required maxlength="100" id="id_date" autocomplete="off"/>
+                                </td>
+                            </tr>
+                            <tr>
+                            <tr>
+                                <th><label for="id_info">What is your comlpaint?</label></th>
+                                <td>
+                                    
+                                    <textarea type="text" name="info" required maxlength="1000" id="id_info" autocomplete="off" height=250px></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input type="submit" id="one" ></td>
+                            </tr>
+                        </table>
+                    </form><br><br>
+                        <center><a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">MENU</a>	</center>
+                        
+                    <br></div>
+                        
+                        
+                        <div class="col-lg-3"></div><br>
+                        </div>
+                        </div><br>
+                        </div>
+                        
+		
+
+
+
+<!-- Bootstrap core JavaScript -->
+    <script src="{%static 'Portalapp/vendor/jquery/jquery.min.js' %}" ></script>
+    <script src="{% static 'Portalapp/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+    
+</div>
+</body>
+
+</html>
